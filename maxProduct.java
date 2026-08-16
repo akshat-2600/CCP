@@ -99,7 +99,7 @@ public class maxProduct {
     }
 
     public static void main(String[] args) {
-        List<Integer> nums = Arrays.asList(2, 5, -15);
+        List<Integer> nums = Arrays.asList(2, 5, -15, 39);
         int maxProduct = maxProduct(nums);
 
         System.out.println("Max Product: " + maxProduct);
