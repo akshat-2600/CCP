@@ -1,61 +1,67 @@
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-class IncrementalSieve {
-    
-    // Function implementing the incremental sieve logic
-    static List<Integer> incrementalSieve(int limit) {
-        List<Intger> primes = new ArrayList<>();
+public class test {
 
-        //edge case : if limit is less than 2, there are no primes
-        if (limit < 2) {
-            return primes;
-        }
+    public static List<String> naturalSort(List<String> strings) {
 
-        // .. intinialize the tracking array for composite
-        boolean[] isComposite = new boolean[limit+1];
+        strings.sort(new Comparator<String>() {
+            @Override
+            public int compare(Strings s1, Strings s2) {
+                List<String> chunks1 = splitChunks(s1);
+                List<String> chunks2 = splitChunks(s2);
 
-        primes.add(2);
-        int nextNum = 3;
+                int minSize = Math.min(chunks1.size(), chunks2.size());
 
-        while (nextNum <= limit) {
-            // check if the number was already marked as composite by a previosu prime
-            if (!isComposite[nextNum]) {
-                boolean isPrime = true;
-                doubel sqrtNextNum = Math.sqrt(nextNum);
-
-                for (int prime : primes) {
-                    if (prime > sqrtNextNum) {
-                        break;
-                    }
-                    if (nextNum % prime == 0) {
-                        isPrime = false;
-                        break;
-                    }
+                for (int i = 0; i < minSize; i++) {
+                    String c1 = chunks1.get(i);
+                    String c2 = chunks2.get(i);
                 }
 
-                if (isPrime) {
-                    primes.add(nextNum);
+                if (Character.isDigit(c1.charAt(0)) && Character.isDigit(c2.charAt(0))) {
+                    int num1 = Integer.parseInt(c1);
+                    int num2 = Integer.parseInt(c2);
 
-                    long start = (long) nextNum * nextNum;
-                    long step = (long) nextNum * 2;
-                    for (long i = start; i <= limit; i+=step) {
-                        isComposite[(int)i] = true;
+                    if (num1 != num2) {
+                        return Integer.compare(num1, num2);
+                    }
+                } else {
+                    int textComp = c1.compareTo(c2);
+                    if (textComp != 0) {
+                        return textComp;
                     }
                 }
+                return Integer.compare(chunks1.size(), chunks2.size());
             }
-            nextNum += 2;
+        });
+        return strings;
+    }
+
+    private static List<String> splitChunks(String str) {
+        List<String> chunks = new ArrayList<>();
+
+        Pattern pattern = Pattern.compile("\\d+|\\D+");
+        Matcher matcher = pattern.matcher(str);
+        while (matcher.find()) {
+            chunks.add(matcher.group());
         }
-        return primes;
+        return chunks;
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        List<String> strings = new ArrayList<>();
 
-        System.out.print("Enter the limit to search for primes: ");
-        int limit = sc.nextInt();
+        strings.add("file1.txt");
+        strings.add("file10.txt");
+        strings.add("file2.txt");
+        strings.add("file20.txt");
+        strings.add("file3.txt");
 
-        List<Integer> result = incrementalSieve(limit);
-        System.out.println("Primes fount up to " + limt + ": " + result);
-        sc.close();
+        List<String> sortedStrings = naturalSort(strings);
+
+        for (String str : sortedStrings) {
+            System.out.println(str);
+        }
     }
 }

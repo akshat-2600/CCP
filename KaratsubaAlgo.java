@@ -1,41 +1,41 @@
-// T.C  : o(N^2)
+// T.C  : O(N^2)
 
-// public static int multiplication(int X, int Y) {
-//     // Convert numbers into string
-//     String x = Integer.toString(X);
-//     String y = Integer.toString(Y);
-//     int result = 0;
+public static int multiplication(int X, int Y) {
+    // Convert numbers into string
+    String x = Integer.toString(X);
+    String y = Integer.toString(Y);
+    int result = 0;
 
-//     // Looping over y
-//     for (int i = 0; i < y.length(); i++) {
-//         int carry = 0;          // intermediate carry
-//         String inter_res = "";  // intermediate result
+    // Looping over y
+    for (int i = 0; i < y.length(); i++) {
+        int carry = 0;          // intermediate carry
+        String inter_res = "";  // intermediate result
 
-//         // Looping over x.
-//         for (int j = x.length() - 1; j >= 0; j--) {
-//             // intermediate multiplication of each digit and addition of carry.
-//             int num = Character.getNumericValue(y.charAt(i)) * Character.getNumericValue(x.charAt(j)) + carry;
+        // Looping over x.
+        for (int j = x.length() - 1; j >= 0; j--) {
+            // intermediate multiplication of each digit and addition of carry.
+            int num = Character.getNumericValue(y.charAt(i)) * Character.getNumericValue(x.charAt(j)) + carry;
 
-//             if (num > 9 && j > 0) {
-//                 inter_res = Integer.toString(num % 10) + inter_res;
-//                 carry = num / 10;
-//             } 
-//             // else the digit is append to the intermediate result
-//             // And assign carry as zero
-//             else {
-//                 inter_res = Integer.toString(num) + inter_res;
-//                 carry = 0;
-//             }
-//         }
+            if (num > 9 && j > 0) {
+                inter_res = Integer.toString(num % 10) + inter_res;
+                carry = num / 10;
+            } 
+            // else the digit is append to the intermediate result
+            // And assign carry as zero
+            else {
+                inter_res = Integer.toString(num) + inter_res;
+                carry = 0;
+            }
+        }
 
-//         // Adding the intermediate results
-//         result *= 10;
-//         result += Integer.parseInt(inter_res);
-//     }
+        // Adding the intermediate results
+        result *= 10;
+        result += Integer.parseInt(inter_res);
+    }
 
-//     System.out.print("result: ");
-//     return result;
-// }
+    System.out.print("result: ");
+    return result;
+}
 
 
 // -----------------------------------------------------------------------------------------

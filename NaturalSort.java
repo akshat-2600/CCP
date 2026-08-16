@@ -279,8 +279,122 @@
 // ---------------------------------------------------------------------------------------------------
 
 
-import java.math.BigDecimal;
-import java.util.Arrays;
+// import java.math.BigDecimal;
+// import java.util.Arrays;
+// import java.util.Comparator;
+// import java.util.List;
+// import java.util.regex.Matcher;
+// import java.util.regex.Pattern;
+
+// public class NaturalSort {
+
+//     // Matches integers or decimal numbers
+//     private static final Pattern TOKEN_PATTERN =
+//             Pattern.compile("\\d+(?:\\.\\d+)?|\\D+");
+
+//     public static void main(String[] args) {
+
+//         List<String> items = Arrays.asList(
+//                 "Photo10.jpg",
+//                 "Photo.jpg",
+//                 "Photo2.jpg",
+//                 "Photo1.jpg",
+//                 "Photo20.jpg",
+//                 "    Photo0000   1974.jpg",
+//                 "Photo0002.jpg",
+//                 "Photo1.5.jpg",
+//                 "Photo1.20.jpg",
+//                 "Photo10.2.jpg",
+//                 "Photo2.10.jpg"
+//         );
+
+//         Comparator<String> naturalOrderComparator = (s1, s2) -> {
+
+//             // Ignore leading/trailing spaces
+//             s1 = s1.trim();
+//             s2 = s2.trim();
+
+//             Matcher m1 = TOKEN_PATTERN.matcher(s1);
+//             Matcher m2 = TOKEN_PATTERN.matcher(s2);
+
+//             while (m1.find() && m2.find()) {
+
+//                 String token1 = m1.group();
+//                 String token2 = m2.group();
+
+//                 boolean number1 = isNumber(token1);
+//                 boolean number2 = isNumber(token2);
+
+//                 // Both tokens are numeric
+//                 if (number1 && number2) {
+
+//                     BigDecimal n1 = new BigDecimal(token1);
+//                     BigDecimal n2 = new BigDecimal(token2);
+
+//                     int result = n1.compareTo(n2);
+
+//                     if (result != 0) {
+//                         return result;
+//                     }
+
+//                     /*
+//                      * If numerically equal:
+//                      * 2 and 0002 are considered equal.
+//                      *
+//                      * Continue comparing remaining parts.
+//                      */
+//                 }
+
+//                 // One is numeric and the other is not
+//                 else if (number1 != number2) {
+
+//                     // Numbers come before text
+//                     return number1 ? -1 : 1;
+//                 }
+
+//                 // Both are text
+//                 else {
+
+//                     int result = token1.compareToIgnoreCase(token2);
+
+//                     if (result != 0) {
+//                         return result;
+//                     }
+//                 }
+//             }
+
+//             // If one string has remaining tokens
+//             if (m1.find()) {
+//                 return 1;
+//             }
+
+//             if (m2.find()) {
+//                 return -1;
+//             }
+
+//             // Completely equal
+//             return 0;
+//         };
+
+//         items.sort(naturalOrderComparator);
+
+//         System.out.println("Natural Sorted:");
+//         for (String item : items) {
+//             System.out.println(item);
+//         }
+//     }
+
+//     private static boolean isNumber(String s) {
+//         return s.matches("\\d+(?:\\.\\d+)?");
+//     }
+// }
+
+
+
+// ----------------------------------------------------------------------------------------
+
+
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -288,103 +402,63 @@ import java.util.regex.Pattern;
 
 public class NaturalSort {
 
-    // Matches integers or decimal numbers
-    private static final Pattern TOKEN_PATTERN =
-            Pattern.compile("\\d+(?:\\.\\d+)?|\\D+");
+    public static List<String> naturalSort(List<String> strings) {
+        // Splitting into text/number chunks allows element-by-element comparison
+        strings.sort(new Comparator<String>() {
+            @Override
+            public int compare(String s1, String s2) {
+                List<String> chunks1 = splitChunks(s1);
+                List<String> chunks2 = splitChunks(s2);
+
+                int minSize = Math.min(chunks1.size(), chunks2.size());
+                for (int i = 0; i < minSize; i++) {
+                    String c1 = chunks1.get(i);
+                    String c2 = chunks2.get(i);
+
+                    // If both chunks are digits, compare them as numbers
+                    if (Character.isDigit(c1.charAt(0)) && Character.isDigit(c2.charAt(0))) {
+                        int num1 = Integer.parseInt(c1);
+                        int num2 = Integer.parseInt(c2);
+                        if (num1 != num2) {
+                            return Integer.compare(num1, num2);
+                        }
+                    } else {
+                        // Otherwise, compare them alphabetically
+                        int textComp = c1.compareTo(c2);
+                        if (textComp != 0) {
+                            return textComp;
+                        }
+                    }
+                }
+                return Integer.compare(chunks1.size(), chunks2.size());
+            }
+        });
+        return strings;
+    }
+
+    // Breaks a string like "file10.txt" into ["file", "10", ".txt"]
+    private static List<String> splitChunks(String str) {
+        List<String> chunks = new ArrayList<>();
+        Pattern pattern = Pattern.compile("\\d+|\\D+");
+        Matcher matcher = pattern.matcher(str);
+        while (matcher.find()) {
+            chunks.add(matcher.group());
+        }
+        return chunks;
+    }
 
     public static void main(String[] args) {
+        List<String> strings = new ArrayList<>();
+        strings.add("file1.txt");
+        strings.add("file10.txt");
+        strings.add("file2.txt");
+        strings.add("file20.txt");
+        strings.add("file3.txt");
 
-        List<String> items = Arrays.asList(
-                "Photo10.jpg",
-                "Photo.jpg",
-                "Photo2.jpg",
-                "Photo1.jpg",
-                "Photo20.jpg",
-                "    Photo0000   1974.jpg",
-                "Photo0002.jpg",
-                "Photo1.5.jpg",
-                "Photo1.20.jpg",
-                "Photo10.2.jpg",
-                "Photo2.10.jpg"
-        );
-
-        Comparator<String> naturalOrderComparator = (s1, s2) -> {
-
-            // Ignore leading/trailing spaces
-            s1 = s1.trim();
-            s2 = s2.trim();
-
-            Matcher m1 = TOKEN_PATTERN.matcher(s1);
-            Matcher m2 = TOKEN_PATTERN.matcher(s2);
-
-            while (m1.find() && m2.find()) {
-
-                String token1 = m1.group();
-                String token2 = m2.group();
-
-                boolean number1 = isNumber(token1);
-                boolean number2 = isNumber(token2);
-
-                // Both tokens are numeric
-                if (number1 && number2) {
-
-                    BigDecimal n1 = new BigDecimal(token1);
-                    BigDecimal n2 = new BigDecimal(token2);
-
-                    int result = n1.compareTo(n2);
-
-                    if (result != 0) {
-                        return result;
-                    }
-
-                    /*
-                     * If numerically equal:
-                     * 2 and 0002 are considered equal.
-                     *
-                     * Continue comparing remaining parts.
-                     */
-                }
-
-                // One is numeric and the other is not
-                else if (number1 != number2) {
-
-                    // Numbers come before text
-                    return number1 ? -1 : 1;
-                }
-
-                // Both are text
-                else {
-
-                    int result = token1.compareToIgnoreCase(token2);
-
-                    if (result != 0) {
-                        return result;
-                    }
-                }
-            }
-
-            // If one string has remaining tokens
-            if (m1.find()) {
-                return 1;
-            }
-
-            if (m2.find()) {
-                return -1;
-            }
-
-            // Completely equal
-            return 0;
-        };
-
-        items.sort(naturalOrderComparator);
-
-        System.out.println("Natural Sorted:");
-        for (String item : items) {
-            System.out.println(item);
+        List<String> sortedStrings = naturalSort(strings);
+        for (String str : sortedStrings) {
+            System.out.println(str);
         }
     }
-
-    private static boolean isNumber(String s) {
-        return s.matches("\\d+(?:\\.\\d+)?");
-    }
 }
+

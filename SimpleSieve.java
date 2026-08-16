@@ -1,3 +1,6 @@
+// T.C   : O(n * log log n)
+// S.C   : O(n)
+
 import java.util.*;
 
 public class SimpleSieve {
@@ -8,7 +11,7 @@ public class SimpleSieve {
         int num = sc.nextInt();
 
         // Sieve of Eratosthenes initialization
-        boolean[] bool = new boolean[num];
+        boolean[] bool = new boolean[num+1];
         for (int i = 0; i < bool.length; i++) {
             bool[i] = true;
         }

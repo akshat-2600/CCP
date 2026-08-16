@@ -3,7 +3,7 @@
 
 class EulerPhi {
     // Function to return GCD of a and b
-    static int gcd(int a, int b) {
+    int gcd(int a, int b) {
         if (b == 0) {
             return a;
         }
@@ -11,7 +11,7 @@ class EulerPhi {
     }
 
     // Function to calculate Euler's Totient (Phi)
-    static int phi(int n) {
+    int phi(int n) {
         int result = 1;
         
         for (int i = 2; i*i < n; i++) {
@@ -27,7 +27,9 @@ class EulerPhi {
         int n = 8;
         
         // Finding Phi for input n
-        System.out.println(phi(n));
+        EulerPhi ep = new EulerPhi();
+
+        System.out.println(ep.phi(n));
     }
 }
 

@@ -1,3 +1,6 @@
+// t.c : O(K * x)
+// SC : O(1)
+
 // import java.io.*;
 // import java.util.*;
 
