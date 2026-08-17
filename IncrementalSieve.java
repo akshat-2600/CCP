@@ -1,3 +1,6 @@
+// T.C : O(n * log log n)
+// S.C : O(sqrt(n))
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;

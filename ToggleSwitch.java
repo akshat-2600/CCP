@@ -1,3 +1,6 @@
+// T.C : O(n * logn)
+// S.C : O(n)
+
 import java.util.*;
 
 public class ToggleSwitch {
@@ -8,7 +11,7 @@ public class ToggleSwitch {
         int i, j, c = 0, o = 0;
 
         for (i = 1; i <= n; i++) {
-            for (j = i; j * i <= n; j++) {
+            for (j = i; j <= n; j += i) {
                 if (b[j] == false) {
                     b[j] = true;
                 } else {
@@ -27,5 +30,6 @@ public class ToggleSwitch {
         
         System.out.println("No Of Doors open: " + c);
         System.out.println("No Of Doors closed: " + o);
+        System.out.println(Math.sqrt(n));
     }
 }

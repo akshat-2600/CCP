@@ -61,7 +61,7 @@ public class StrobogrammaticNumber {
                (left == '6' && right == '9') ||
                (left == '8' && right == '8') ||
                (left == '9' && right == '6');
-    }
+        }
     
     // Main method with test cases
     public static void main(String[] args) {
@@ -134,6 +134,7 @@ public class EthCode {
         if (n == 0) {
             return new ArrayList<>(Arrays.asList(""));
         }
+        
         if (n == 1) {
             return new ArrayList<>(Arrays.asList("1", "0", "8"));
         }
