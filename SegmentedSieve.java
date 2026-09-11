@@ -1,6 +1,7 @@
 // T.C : O(n)
 // S.C : O(n)
 
+
 import java.util.*;
 
 class SegmentedSieve {
