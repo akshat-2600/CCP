@@ -50,7 +50,7 @@ public class BlockSwapAlgorithm {
 
     public static void main(String args[]) {
 
-        int arr[] = {1, 2, 3, 4, 5, 6, 7};
+        int arr[] = {10, 20, 30, 40};
 
         int d = 3;
 
@@ -127,8 +127,8 @@ public class BlockSwapAlgorithm {
     }
 
     public static void main(String[] args) {
-        int[] arr = {1, 2, 3, 4, 5};
-        int rotations = 2;
+        int[] arr = {10, 20, 30, 40};
+        int rotations = 3;
 
         rotateArray(arr, rotations);
 

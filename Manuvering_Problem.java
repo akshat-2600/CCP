@@ -19,3 +19,83 @@ public class EthCode {
         System.out.println(numberOfPaths(3, 3));
     }
 }
+
+
+
+// ------------------------------------------------------------------------------------------
+
+
+public class UnderwaterDrone {
+
+    static final int RIGHT = 1;
+    static final int DOWN = 2;
+    static final int NONE = 0;
+
+    static void findUnderwaterPath(
+            int x,
+            int y,
+            int prevDir,
+            int batteryLeft,
+            String path) {
+
+        // Destination reached
+        if (x == 3 && y == 3) {
+            System.out.println(path + "  Battery used = " + (8 - batteryLeft));
+            return;
+        }
+
+        // Try moving Right
+        if (y + 1 < 4) {
+
+            int cost = 1;
+
+            // If previous direction exists and is different,
+            // this move is a turn.
+            if (prevDir != NONE && prevDir != RIGHT) {
+                cost += 2;
+            }
+
+            if (batteryLeft >= cost) {
+                findUnderwaterPath(
+                        x,
+                        y + 1,
+                        RIGHT,
+                        batteryLeft - cost,
+                        path + "R"
+                );
+            }
+        }
+
+        // Try moving Down
+        if (x + 1 < 4) {
+
+            int cost = 1;
+
+            // Direction changed -> additional 2 battery
+            if (prevDir != NONE && prevDir != DOWN) {
+                cost += 2;
+            }
+
+            if (batteryLeft >= cost) {
+                findUnderwaterPath(
+                        x + 1,
+                        y,
+                        DOWN,
+                        batteryLeft - cost,
+                        path + "D"
+                );
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+
+        findUnderwaterPath(
+                0,      // x
+                0,      // y
+                NONE,   // no previous direction
+                8,      // battery
+                ""      // path
+        );
+    }
+}

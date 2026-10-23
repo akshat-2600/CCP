@@ -1,6 +1,5 @@
-import java.util.Arrays;
 
-public class PalindromeGenerator {
+public class Lexicographically_First_Palindromic_String {
 
     public static String getLexicographicallyFirstPalindrome(String s) {
         if (s == null || s.isEmpty()) {

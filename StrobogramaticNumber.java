@@ -72,16 +72,6 @@ public class StrobogrammaticNumber {
             "962",   // false: 962 rotated becomes 296
             "101",   // true: 101 rotated becomes 101
             "609",   // false: 609 rotated becomes 609 (invalid middle digit)
-            "6",     // true: 6 rotated becomes 9 (single digit check)
-            "9",     // true: 9 rotated becomes 6 (single digit check)
-            "818",   // true: 818 rotated becomes 818
-            "123",   // false: invalid digits
-            "0",     // true: 0 rotated becomes 0
-            "689",   // false: invalid combination
-            "619",   // false: 619 rotated becomes 619 (6→9, 1→1, 9→6 → 916)
-            "1001",  // true: 1001 rotated becomes 1001
-            "1111",  // true: 1111 rotated becomes 1111
-            "1110"   // false: 0 at end not valid
         };
         
         System.out.println("Strobogrammatic Number Checker");
