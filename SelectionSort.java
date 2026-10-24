@@ -1,3 +1,6 @@
+// T.C : O(N^2)
+// S.C : O(1)
+
 public class SelectionSort {
     public static void selectionSort(int[] arr, int n) {
         for (int i = 0; i < n - 1; i++) {

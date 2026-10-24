@@ -4,8 +4,6 @@ public class Graph {
     private int V;
     private LinkedList<Integer> adj[];
 
-    // Constructor to initialize the graph
-    @SuppressWarnings("unchecked")
     Graph(int v) {
         V = v;
         adj = new LinkedList[v];
@@ -69,8 +67,6 @@ class Graph {
     private LinkedList<Integer> adjLists[];
     private boolean visited[];
 
-    // Constructor to initialize the graph structures
-    @SuppressWarnings("unchecked")
     Graph(int vertices) {
         adjLists = new LinkedList[vertices];
         visited = new boolean[vertices];

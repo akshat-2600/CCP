@@ -75,7 +75,7 @@ import java.util.*;
 
 public class maxProduct {
     public static int maxProduct(List<Integer> nums) {
-        if (nums.size() == 0) {
+        if (nums.size() == 0) { // nums.isEmpty()
             return 0;
         }
 
@@ -99,7 +99,7 @@ public class maxProduct {
     }
 
     public static void main(String[] args) {
-        List<Integer> nums = Arrays.asList(2, 5, -15, 39);
+        List<Integer> nums = Arrays.asList(2, 5, -15, -39);
         int maxProduct = maxProduct(nums);
 
         System.out.println("Max Product: " + maxProduct);

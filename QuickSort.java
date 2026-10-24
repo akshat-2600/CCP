@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class QuickSort {
-    // Time complexity -> O(n log n) average case, O(n^2) worst case
+    // Time complexity -> O(n log n) average & best case, O(n^2) worst case
     // Space complexity -> O(log n) auxiliary stack space
     public static int partition(List<Integer> arr, int st, int end) {
         int idx = st - 1;
@@ -38,7 +38,7 @@ public class QuickSort {
 
     public static void main(String[] args) {
         // Using an ArrayList to mimic C++ vector behavior
-        List<Integer> arr = new ArrayList<>(Arrays.asList(12, 31, 35, 8, 32, 17));
+        List<Integer> arr = new ArrayList<>(Arrays.asList(12, 31, 35, 8, 32, 17));  // arr.add(12) // arr.add(31) ...
 
         quickSort(arr, 0, arr.size() - 1);
 

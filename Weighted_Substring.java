@@ -1,9 +1,9 @@
 import java.util.*;
 
-class EthCode {
+class Weighted_Substring {
     static int distinctSubString(String P, String Q, int K, int N) {
         // Hashmap to store all subStrings
-        HashSet<String> S = new HashSet<String>();
+        HashSet<String> S = new HashSet<>();
         
         // Iterate over all subStrings
         for (int i = 0; i < N; ++i) {

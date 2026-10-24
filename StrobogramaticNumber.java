@@ -74,9 +74,6 @@ public class StrobogrammaticNumber {
             "609",   // false: 609 rotated becomes 609 (invalid middle digit)
         };
         
-        System.out.println("Strobogrammatic Number Checker");
-        System.out.println("=================================");
-        
         for (String num : testNumbers) {
             boolean result = isStrobogrammatic(num);
             System.out.println(num + " → " + result);
@@ -90,15 +87,6 @@ public class StrobogrammaticNumber {
             System.out.print("Number: ");
             String input = scanner.nextLine().trim();
             
-            if (input.equalsIgnoreCase("quit")) {
-                break;
-            }
-            
-            // Check if input is a valid number
-            if (!input.matches("\\d+")) {
-                System.out.println("Please enter a valid number (digits only)");
-                continue;
-            }
             
             boolean result = isStrobogrammatic(input);
             System.out.println(input + " is " + (result ? "" : "NOT ") + "strobogrammatic");
