@@ -35,7 +35,7 @@ class Graph {
         }
     }
 
-    @SuppressWarnings("unchecked")
+
     public Graph(int v) {
         V = v;
         adjMatrix = new int[v][v];
