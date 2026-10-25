@@ -41,7 +41,7 @@ public class HamiltonianCycle {
         for (int v = 0; v < V; v++) {
             if (graph[vertex][v] == 1) {
                 path[pathCount++] = v;
-                
+                                
                 // Temporarily remove the edge (Backtracking step)
                 graph[vertex][v] = 0;
                 graph[v][vertex] = 0;

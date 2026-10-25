@@ -22,7 +22,7 @@ class Solution {
                 deq.pollLast();
             }
 
-            // Step3 : Add cuurent element idx to the back
+            // Step3 : Add cuurent element idx to the bacj
             deq.offerLast(i);
 
             // Step4 : Once the window hits size k, add the maximum to the result
